@@ -1,24 +1,18 @@
 ﻿#include <iostream>
 #include "Stack.h"
 #include "Linked_Lists.h"
+#include "Array.h"
+#include "String.h"
 
 using namespace std;
 
-int main()
-{
-   
-    Linked_List<int> List;
 
-    List.Push_Back(1);
-    List.Push_Back(2);
-    List.Push_Back(3);
-    List.Push_Back(4);
-    List.Push_Front(0);
+int main() {
 
-    for (int i = 0; i < List.Get_Size(); i++)
-    {
-        cout << List[i] << " ";
-    }
+	String s ;
+	
 
-    return 0;
+	return 0;
+
+
 }
