@@ -40,9 +40,11 @@ public:
 
 	Array(Array<T>& source) : Array((Ienumerable<T>&)source) {};
 
-	Array(int Size, T default_value = default(T)) {
+	Array(int Size, T default_value = T()) {
 
 		Pointer = new T[Size];
+
+		this->Size = Size;
 
 		for (int i = 0; i < Size; i++)
 		{
@@ -55,7 +57,11 @@ public:
 		return Size;
 	}
 
-
+	void Resize(int New_Size) {
+		delete[] Pointer;
+		Pointer = new T[New_Size];
+		Size = New_Size;
+	}
 
 
 	void PushFront(T elem) {
@@ -72,7 +78,7 @@ public:
 
 		std::memcpy(Pointer, temp, Size * sizeof(T));
 
-		Pointer[Size ] = elem;
+		Pointer[Size] = elem;
 
 		delete[] temp;
 
@@ -117,14 +123,15 @@ public:
 		if (index < 0 || index > Size) {
 			throw std::exception("Index out of range");
 		}
-		else {
+		else 
+		{
 
 
 			T* temp = new T[Size];
 
-			std::memcpy(temp , Pointer , Size * sizeof(T));
+			std::memcpy(temp, Pointer, Size * sizeof(T));
 
-			delete Pointer;
+			delete[] Pointer;
 			Pointer = new T[Size - 1];
 
 			for (int i = 0; i < Size - 1; i++)
@@ -142,7 +149,8 @@ public:
 		if (index < 0 || index >= Size) {
 			throw std::exception("Index out of range");
 		}
-		else {
+		else
+		{
 			return Pointer[index];
 		};
 	};
@@ -156,6 +164,11 @@ public:
 
 		delete[] Pointer;
 		Size = 0;
+	}
+
+	~Array()
+	{
+		delete[] Pointer;
 	}
 
 private:
