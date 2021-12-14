@@ -10,7 +10,7 @@ public:
 
 	Linked_List()
 	{
-
+		Size = 0;
 	}
 
 	Linked_List(std::initializer_list<T> source) {
@@ -42,9 +42,9 @@ public:
 		}
 	}
 
-	Linked_List(int Size, T default_value = default(T)) {
+	Linked_List(int Size, T default_value = T()) {
 		
-		Size = Size;
+		this->Size = Size;
 
 		Head = new Node(default_value);
 		Node* temp = Head;

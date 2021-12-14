@@ -1,9 +1,12 @@
 ﻿#include <iostream>
+#include <string>
+#include <map>
 #include "Stack.h"
 #include "Linked_Lists.h"
 #include "Array.h"
 #include "String.h"
 #include "Algorithms.h"
+#include "Map.h"
 
 using namespace std;
 
@@ -30,17 +33,26 @@ void RandomFIll(Ienumerable<T>& sequence) {
 
 }
 
+void F(Array<int> T) {
+
+}
+
 int main() {
 
     srand(time(NULL));
 
-    Array<string> array({"1234" , "143", "1111"});
+    String s = "12344";
 
-    Sort(array);
+    map<int, int> m;
+    
+    Map<int, String> map;
+    map[2] = "123456";
 
-    Print(array);
+    map[2] += "0987";
 
-    cout << BinarySearch(array, (string)"1111");
+    map[2].RemoveLast();
+
+    Print(map[2]);
 
     return 0;
 

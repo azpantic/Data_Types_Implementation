@@ -26,5 +26,8 @@ public:
 
 	virtual T At(const int index) = 0;
 
+
+	virtual ~Ienumerable() {};
+
 };
 

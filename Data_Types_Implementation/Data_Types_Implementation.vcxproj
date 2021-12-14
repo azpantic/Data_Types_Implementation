@@ -146,12 +146,10 @@
     <ClInclude Include="Array.h" />
     <ClInclude Include="Ienumerable.h" />
     <ClInclude Include="Linked_Lists.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="String.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Data_Types_Implementation.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

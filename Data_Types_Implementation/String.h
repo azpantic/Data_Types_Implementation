@@ -4,7 +4,7 @@
 #include "Ienumerable.h"
 #include "Array.h"
 
-class String : Ienumerable<char> {
+class String : public Ienumerable<char> {
 
 public:
 
@@ -19,12 +19,20 @@ public:
 
 	String& operator = (const char* str) {
 
+	
 		Size = 0;
 		while (str[Size++] != '\0');
+		Size -= 1;
 
+		delete[] this->str;
 		this->str = new char[Size];
 
-		memcpy(this->str, str, Size);
+		//std::cout << Size;
+
+		for (int i = 0; i < Size; i++)
+		{
+			this->str[i] = str[i];
+		}
 
 		return *this;
 	};
@@ -120,7 +128,6 @@ public:
 		else
 		{
 
-
 			char* temp = new char[Size];
 
 			std::memcpy(temp, str, Size * sizeof(char));
@@ -151,28 +158,33 @@ public:
 		return this->operator[](index);
 	}
 
-	String operator+ (String& value) {
 
-		String temp;
+	String& operator += (String& rhs) {
 
-		temp.Resize(this->GetSize() + value.GetSize());
+		String temp(*this);
 
-		for (int i = 0; i < this->GetSize(); i++)
+		this->Resize(this->GetSize() + rhs.GetSize() - 1);
+
+		for (int i = 0; i < temp.GetSize(); i++)
 		{
-			temp[i] = this->operator[](i);
+			this->operator[](i) = temp[i];
 		}
 
-		for (int i = 0; i < value.GetSize(); i++)
+		for (int i = 0; i < rhs.GetSize(); i++)
 		{
-			temp[this->GetSize() + i] = value[i];
+			this->operator[](temp.GetSize() + i - 1) = rhs[i];
 		}
 
-		return temp;
+		return *this;
 	}
 
-	String& operator += (String& right) {
+	String& operator += (const char* rhs) {
 
+		String temp(rhs);
 
+		this->operator+=(temp);
+
+		return *this;
 	}
 
 	~String()

@@ -9,7 +9,6 @@ public:
 
 	Array()
 	{
-
 	}
 
 	Array(std::initializer_list<T> source) {
@@ -50,6 +49,21 @@ public:
 		{
 			Pointer[i] = default_value;
 		}
+	}
+
+	Array& operator= ( Array<T>& source) {
+
+		this->Clear();
+		this->Size = source.GetSize();
+
+		this->Pointer = new T[Size];
+
+		for (int i = 0; i < Size; i++)
+		{
+			this->operator[](i) = source.At(i);
+		}
+
+		return *this;
 	}
 
 
@@ -164,10 +178,10 @@ public:
 
 		delete[] Pointer;
 		Size = 0;
+		Pointer = NULL;
 	}
 
-	~Array()
-	{
+	~Array() {
 		delete[] Pointer;
 	}
 
